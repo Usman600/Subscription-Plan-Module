@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_subscription_plan,access.subscription.plan,model_subscription_plan,,1,1,1,1
+access_subscription_plan_discount_wizard,access.subscription.plan.discount.wizard,model_subscription_plan_discount_wizard,,1,1,1,1

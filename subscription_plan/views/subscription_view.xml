@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_subscription_plan_tree" model="ir.ui.view">
+        <field name="name">subscription.plan.tree</field>
+        <field name="model">subscription.plan</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="price"/>
+                <field name="duration_months"/>
+                <field name="total_price"/>
+                <field name="discount_price"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_subscription_plan_form" model="ir.ui.view">
+        <field name="name">subscription.plan.form</field>
+        <field name="model">subscription.plan</field>
+        <field name="arch" type="xml">
+            <form string="Subscription Plan">
+                <!-- STATUS BAR -->
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,confirmed,discounted"/>
+                    <button name="action_open_discount_wizard"
+                            string="Apply Discount"
+                            type="object"
+                            class="oe_highlight"/>
+                </header>
+                <sheet>
+
+
+                    <group>
+                        <field name="name"/>
+                        <field name="price"/>
+                        <field name="duration_months"/>
+                        <field name="total_price" readonly="1"/>
+                        <field name="discount_price" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_subscription_plan_discount_wizard" model="ir.ui.view">
+        <field name="name">subscription.plan.discount.wizard.form</field>
+        <field name="model">subscription.plan.discount.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Confirm Discount">
+                <group>
+                    <separator string="Are you sure you want to apply the discount?"/>
+                </group>
+                <footer>
+                    <button name="confirm_discount" string="Confirm" type="object" class="btn-primary"/>
+                    <button name="cancel_discount" string="Cancel" type="object" class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_subscription_plan" model="ir.actions.act_window">
+        <field name="name">Subscription Plans</field>
+        <field name="res_model">subscription.plan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_subscription_plan"
+              name="Subscription Plans"
+              parent="sale_subscription.menu_sale_subscription"
+              action="action_subscription_plan"/>
+</odoo>
